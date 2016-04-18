@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', parse_url(getenv("CLEARDB_DATABASE_URL"))["host"]),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', substr(parse_url(getenv("CLEARDB_DATABASE_URL"))["path"], 1)),
+            'username' => env('DB_USERNAME', parse_url(getenv("CLEARDB_DATABASE_URL"))["user"]),
+            'password' => env('DB_PASSWORD', parse_url(getenv("CLEARDB_DATABASE_URL"))["pass"]),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
