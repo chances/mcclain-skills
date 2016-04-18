@@ -8,10 +8,16 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    Laravel Skill Test's Landing Page.
+                  <p>Laravel Skill Test's Landing Page.</p>
+                  @if (Auth::check())
+                      <h2>Hi, {{ Auth::user()->name }}!</h2>
+                      <p><a href="{{ url('/logout') }}" class="btn btn-default"><i class="fa fa-btn fa-sign-out"></i>Logout</a></p>
+                  @endif
                 </div>
             </div>
-            @include('auth.common-login')
+            @if (Auth::guest())
+              @include('auth.common-login')
+            @endif
         </div>
     </div>
 </div>
